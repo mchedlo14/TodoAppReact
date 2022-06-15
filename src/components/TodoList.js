@@ -1,23 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './Todolist.css'
 
-const TodoList = ({data}) => {
-    const [todos,setTodos] = useState([])
+const TodoList = ({data,newTodo}) => {
 
-    useEffect(() => {
-      setTodos(data)
-    },[data])
 
     
     const handleDelete = (index) => {
-        let newtodo = todos.filter(item => item.index !== index)    
-        setTodos(newtodo)
+        let newtodo = data.filter(item => item.id !== index)   
+
+        newTodo(newtodo)
     } 
+    
 
   return (
     <div className='todolist'>
-        {todos.map((item,index)=> {
-            return <div className='todo-row' key={index}> {item} <i className="fas fa-trash" onClick={(index) => handleDelete}></i></div>
+        {data.map((item,index)=> {
+            return <div className='todo-row' key={index}> {item.value} <i className="fas fa-trash" onClick={() => handleDelete(item.id)}></i></div>
         })}
     </div>
   )

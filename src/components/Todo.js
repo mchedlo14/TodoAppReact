@@ -5,13 +5,19 @@ import TodoList from './TodoList'
 
 const Todo = () => {
     //inputshi vinaxav shekvanil texsts
-    const [input,setInput] = useState('sada')
+    const [input,setInput] = useState('')
     const [arr,setArr] = useState([])
+    const [rId,setRid] = useState(0)
 
     const handleClick = () => {
-        setArr([...arr,input]);
+        idGenerator()
+        setArr([...arr,{ id : rId, value : input}]);
     }
+
     
+    const idGenerator = () => { 
+        setRid(Math.floor(Math.random() * 10000))
+    }
 
   return (
     <>
@@ -24,7 +30,7 @@ const Todo = () => {
     </div>
 
     <div>
-        <TodoList data = {arr} />
+        <TodoList data = {arr} newTodo={setArr}/>
     </div>
 
     <div>

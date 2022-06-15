@@ -19,3 +19,9 @@
 .fa-trash:hover{
     color: rgb(134, 134, 134);
 }
+
+@media(max-width:480px){
+    .todo-row{
+        width: 95%;
+    }
+  }
