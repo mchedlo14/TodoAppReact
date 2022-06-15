@@ -11,7 +11,9 @@ const Todo = () => {
 
     const handleClick = () => {
         idGenerator()
-        setArr([...arr,{ id : rId, value : input}]);
+        if(input.length > 0){
+            setArr([...arr,{ id : rId, value : input}]);
+        }
     }
 
     
@@ -21,24 +23,41 @@ const Todo = () => {
 
   return (
     <>
-    <div className='input-container'>
-        <h1 className='title'>Todo App</h1>
-        <div className='input-box'>
-            <input type='text' className='input' placeholder='Add a To Do' onChange={e => setInput(e.target.value)} value={input}/>
-            <i className="fas fa-plus-square" onClick={handleClick}></i>
+      <div className="input-container">
+        <h1 className="title">Todo App</h1>
+        <div className="input-box">
+          <input
+            type="text"
+            className="input"
+            placeholder="Add a To Do"
+            onChange={(e) => setInput(e.target.value)}
+            value={input}
+          />
+          <i className="fas fa-plus-square" onClick={handleClick}></i>
         </div>
-    </div>
+      </div>
 
-    <div>
-        <TodoList data = {arr} newTodo={setArr}/>
-    </div>
+      {input.length > 0 ? (
+        <>
+          <div>
+            <TodoList data={arr} newTodo={setArr} />
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
 
-    <div>
-        <button className='clearbtn' onClick={() => setArr([])}>Clear All</button>
-    </div>
-
+      {arr.length > 0 ? (
+        <div>
+          <button className="clearbtn" onClick={() => setArr([])}>
+            Clear All
+          </button>
+        </div>
+      ) : (
+        <></>
+      )}
     </>
-  )
+  );
 }
 
 export default Todo
