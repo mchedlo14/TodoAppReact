@@ -4,7 +4,7 @@ import TodoList from './TodoList'
 
 
 const Todo = () => {
-    //inputshi vinaxav shekvanil texsts
+
     const [input,setInput] = useState('')
     const [arr,setArr] = useState([])
     const [rId,setRid] = useState(0)
