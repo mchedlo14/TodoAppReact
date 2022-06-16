@@ -57,5 +57,7 @@
 @media(max-width:480px){
     .input-box{
         width: 95%;
+        display: flex;
+        justify-content: center;
     }
   }

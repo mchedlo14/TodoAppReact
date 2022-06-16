@@ -13,6 +13,7 @@ const Todo = () => {
         idGenerator()
         if(input.length > 0){
             setArr([...arr,{ id : rId, value : input}]);
+            console.log(arr)
         }
     }
 
@@ -31,16 +32,15 @@ const Todo = () => {
             className="input"
             placeholder="Add a To Do"
             onChange={(e) => setInput(e.target.value)}
-            value={input}
           />
           <i className="fas fa-plus-square" onClick={handleClick}></i>
         </div>
       </div>
 
-      {input.length > 0 ? (
+      {arr.length > 0 ? (
         <>
           <div>
-            <TodoList data={arr} newTodo={setArr} />
+            <TodoList data={arr} newTodo={setArr}/>
           </div>
         </>
       ) : (
@@ -48,7 +48,7 @@ const Todo = () => {
       )}
 
       {arr.length > 0 ? (
-        <div>
+        <div className='button-container'>
           <button className="clearbtn" onClick={() => setArr([])}>
             Clear All
           </button>

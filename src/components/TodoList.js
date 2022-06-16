@@ -11,11 +11,10 @@ const TodoList = ({data,newTodo}) => {
         newTodo(newtodo)
     } 
     
-
   return (
     <div className='todolist'>
         {data.map((item,index)=> {
-            return <div className='todo-row' key={index}> {item.value} <i className="fas fa-trash" onClick={() => handleDelete(item.id)}></i></div>
+            return <div className='todo-row' key={index}> {item.value}<i className="fas fa-trash" onClick={() => handleDelete(item.id)}></i></div>
         })}
     </div>
   )
