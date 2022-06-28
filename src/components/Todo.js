@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useRef, useEffect} from 'react'
 import './Todo.css'
 import TodoList from './TodoList'
 
@@ -9,11 +9,17 @@ const Todo = () => {
     const [arr,setArr] = useState([])
     const [rId,setRid] = useState(0)
 
+    const inputRef = useRef(null)
+
+    useEffect(() => {
+      inputRef.current.focus()
+    },[])
+
     const handleClick = () => {
         idGenerator()
         if(input.length > 0){
-            setArr([...arr,{ id : rId, value : input}]);
-            console.log(arr)
+            setArr([{ id : rId, value : input},...arr]);
+            setInput('')
         }
     }
 
@@ -31,7 +37,9 @@ const Todo = () => {
             type="text"
             className="input"
             placeholder="Add a To Do"
+            value={input}
             onChange={(e) => setInput(e.target.value)}
+            ref={inputRef}
           />
           <i className="fas fa-plus-square" onClick={handleClick}></i>
         </div>
@@ -40,7 +48,7 @@ const Todo = () => {
       {arr.length > 0 ? (
         <>
           <div>
-            <TodoList data={arr} newTodo={setArr}/>
+            <TodoList data={arr} newTodo={setArr} />
           </div>
         </>
       ) : (
